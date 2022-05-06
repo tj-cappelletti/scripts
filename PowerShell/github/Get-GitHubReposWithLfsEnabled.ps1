@@ -15,7 +15,7 @@ param
 
 begin {
     # TODO: Change repos to org after testing
-    $orgReposApiEndpoint = "https://api.github.com/users/$Organization/repos"
+    $orgReposApiEndpoint = "https://api.github.com/orgs/$Organization/repos"
 
     $headers = @{
         Accept = "application/vnd.github.v3+json"
@@ -31,8 +31,10 @@ process {
         $repoContentsApiEndpoint = "https://api.github.com/repos/$Organization/$($repo.name)/contents/.gitattributes"
         
         try {
+            Write-Host "Getting file contents in $($repo.name)"
             $fileContent = Invoke-RestMethod -Uri $repoContentsApiEndpoint -Method Get -Headers $headers
             
+            Write-Host "Getting raw file contents in $($repo.name)"
             $webResponse = Invoke-WebRequest -Uri $fileContent.download_url -Headers $headers
 
             $gitAttributesFile = $webResponse.Content
@@ -43,6 +45,9 @@ process {
         } catch {
             if($_.Exception.Response.StatusCode.value__ -ne 404) {
                 Write-Error "Unable to fetch contents for the repo $($repo.name)"
+            }
+            else {
+                Write-Host "Git LFS not found in $($repo.name)"
             }
         }
     }
