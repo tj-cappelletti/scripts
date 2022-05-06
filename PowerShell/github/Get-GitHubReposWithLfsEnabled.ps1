@@ -15,7 +15,7 @@ param
 
 begin {
     # TODO: Change repos to org after testing
-    $orgReposApiEndpoint = "https://api.github.com/users/$Organization/repos"
+    $orgReposApiEndpoint = "https://api.github.com/org/$Organization/repos"
 
     $headers = @{
         Accept = "application/vnd.github.v3+json"
