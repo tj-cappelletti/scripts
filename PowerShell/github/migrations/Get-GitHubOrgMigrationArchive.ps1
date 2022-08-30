@@ -36,6 +36,8 @@ begin {
     }
 
     $downloadFile = Join-Path $DownloadPath.FullName "$Organization-$MigrationId.tar.gz"
+
+    Write-Host "Download file: $downloadFile"
 }
 
 process {
