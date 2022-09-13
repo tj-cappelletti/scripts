@@ -1,0 +1,22 @@
+[
+    {
+        "repoCloneUrl": "https://github.com/actions/starter-workflows.git",
+        "branch": "main",
+        "folders": [
+            {
+                "source": "/script",
+                "destination": "/script"
+            }
+        ]
+    },
+    {
+        "repoCloneUrl": "https://github.com/actions/toolkit.git",
+        "commit": "6e4be6f6653c59cdfba9b7683b92cd36caaecb2d",
+        "folders": [
+            {
+                "source": "/.github",
+                "destination": "/.github"
+            }
+        ]
+    }
+]
